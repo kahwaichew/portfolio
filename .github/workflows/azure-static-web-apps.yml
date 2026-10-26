@@ -11,9 +11,13 @@ jobs:
   deploy:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    env:
+      # Skips cleanly until the Azure token secret has been added to the repo
+      AZURE_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: Azure/static-web-apps-deploy@v1
+        if: env.AZURE_TOKEN != ''
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # comments the PR preview URL
