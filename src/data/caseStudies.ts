@@ -15,10 +15,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     isConcept: true,
     role: 'Solo UX/UI Designer — research, IA, wireframes, design system, prototyping',
     timeline: '4 weeks (self-initiated)',
-    tools: ['Figma', 'FigJam', 'Figma Prototyping'],
+    tools: ['Figma', 'Figma Variables', 'Figma Prototyping'],
+    figmaUrl: 'https://www.figma.com/design/813Kd8Rw5eRaHniijuYlNZ/Duit',
+    prototypeUrl: 'https://www.figma.com/proto/813Kd8Rw5eRaHniijuYlNZ/Duit?node-id=6-359&starting-point-node-id=6%3A359',
     tags: ['Fintech', 'iOS', 'Design System', 'Prototype'],
     accent: '#0F9D7A',
-    cover: { src: img('duit', 'cover'), alt: 'Duit app home, spending insights and pay screens on three phones' },
+    cover: { src: '/work/duit/cover.webp', alt: 'Duit app home, spending insights and pay screens on three phones' },
     sections: [
       {
         id: 'problem',
@@ -98,6 +100,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         layout: 'mobile',
         phase: 'ideate',
         title: 'Low-fidelity wireframes',
+        // TODO(verify): sample testing note. Replace with what your own wireframe tests found.
         body: ['Grayscale wireframes let me test hierarchy with 3 users before committing to visuals. The first version buried the remaining budget below the fold — every tester missed it.'],
         images: [
           { src: img('duit', 'wire-home'), alt: 'Wireframe of the home screen' },
@@ -169,10 +172,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     isConcept: true,
     role: 'Solo UX/UI Designer — informed by 1.5 years building RetailAIM+',
     timeline: '3 weeks (self-initiated)',
-    tools: ['Figma', 'FigJam', 'Figma Variables'],
+    tools: ['Design in code (HTML/CSS)', 'Design tokens', 'Playwright'],
     tags: ['B2B SaaS', 'Dashboard', 'Data Viz', 'Responsive'],
     accent: '#5F5AF6',
-    cover: { src: img('shelfwise', 'cover'), alt: 'Shelfwise dashboard overview on a laptop and tablet' },
+    cover: { src: '/work/shelfwise/cover.webp', alt: 'Shelfwise dashboard overview on a laptop and tablet' },
     sections: [
       {
         id: 'problem',
@@ -241,6 +244,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         layout: 'web',
         phase: 'ideate',
         title: 'Wireframes',
+        // TODO(verify): sample finding. Replace with feedback you actually collected.
         body: ['I explored two layouts for the overview: a map-first and a KPI-first layout. Managers preferred KPI-first — the map became a secondary tab.'],
         images: [
           { src: img('shelfwise', 'wire-overview'), alt: 'Wireframe of the KPI-first overview' },
@@ -252,7 +256,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         kind: 'palette',
         phase: 'design',
         title: 'Design system',
-        body: ['Light and dark modes built from Figma variables. Chart colours are checked for colour-blind safety and 3:1 contrast against the surface.'],
+        body: ['Tokens are defined once as CSS variables and reused by every component. Chart colours are checked for colour-blind safety and 3:1 contrast against the surface.'],
         colors: [
           { name: 'Brand / Indigo', hex: '#5F5AF6' },
           { name: 'Ink', hex: '#0B1329' },
