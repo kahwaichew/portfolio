@@ -331,7 +331,7 @@ function SectionImages({ section, onOpen }: { section: CaseSection; onOpen: (ima
           >
             <CaseImageView
               image={image}
-              className={`w-full object-cover ${mobile ? 'aspect-[390/844]' : 'aspect-[16/10]'}`}
+              className={`w-full ${mobile ? 'aspect-[390/844] object-cover' : 'h-auto'}`}
             />
           </button>
           {image.caption && (

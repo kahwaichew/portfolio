@@ -36,7 +36,7 @@ export default function SelectedWork() {
                 className="group block rounded-3xl overflow-hidden border border-slate-100 bg-white shadow-xs hover:shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-brand"
               >
                 <div
-                  className={`overflow-hidden ${index === 0 ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[4/3]'}`}
+                  className={`overflow-hidden ${index === 0 ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[16/9]'}`}
                   style={{ backgroundColor: `${study.accent}14` }}
                 >
                   <CaseImageView
