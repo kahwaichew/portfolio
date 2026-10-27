@@ -308,10 +308,9 @@ function PersonaList({ title, items, tone }: { title: string; items: string[]; t
 
 function SectionImages({ section, onOpen }: { section: CaseSection; onOpen: (image: CaseImage) => void }) {
   if (!section.images?.length) return null;
-  const layout = section.kind === 'gallery' ? section.layout : undefined;
-  const mobile = layout === 'mobile';
-  // 'detail' images are close-up crops with their own aspect ratio, so they keep it
-  const gridClass = mobile || layout === 'detail'
+  const mobile = section.kind === 'gallery' && section.layout === 'mobile';
+  const screenRatio = section.kind === 'gallery' ? (section.screenRatio ?? 390 / 844) : undefined;
+  const gridClass = mobile
     ? 'grid-cols-2 sm:grid-cols-3'
     : section.images.length > 1
       ? 'grid-cols-1 md:grid-cols-2'
@@ -326,10 +325,14 @@ function SectionImages({ section, onOpen }: { section: CaseSection; onOpen: (ima
             className="block w-full rounded-2xl overflow-hidden border border-slate-100 bg-slate-50 hover:shadow-md transition-shadow cursor-zoom-in"
             aria-label={`Enlarge: ${image.alt}`}
           >
-            <CaseImageView
-              image={image}
-              className={`w-full ${mobile ? 'aspect-[390/844] object-cover' : 'h-auto'}`}
-            />
+            {mobile ? (
+              // Long scrolling screens are cut to the phone height here and shown whole in the lightbox
+              <div style={{ aspectRatio: screenRatio }}>
+                <CaseImageView image={image} className="w-full h-full object-cover object-top" />
+              </div>
+            ) : (
+              <CaseImageView image={image} className="w-full h-auto" />
+            )}
           </button>
           {image.caption && (
             <figcaption className="text-xs text-slate-500 mt-2 leading-relaxed">{image.caption}</figcaption>

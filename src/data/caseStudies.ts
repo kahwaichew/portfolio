@@ -138,25 +138,12 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        // TODO(verify): sample results. Replace with your own usability-test results.
-        id: 'testing',
-        kind: 'insights',
-        phase: 'test',
-        title: 'Usability testing',
-        body: ['5 participants completed 3 tasks on the Figma prototype. Two changes came out of it: the budget ring got a numeric label, and “Split” moved from Me to the Pay tab.'],
-        items: [
-          { label: 'task success (set a budget)', value: '5/5' },
-          { label: 'avg. time to first budget', value: '48s' },
-          { label: 'SUS score', value: '82' },
-        ],
-      },
-      {
         id: 'learnings',
         kind: 'text',
         phase: 'test',
         title: 'What I learned',
         body: [
-          'Starting from real data instead of an empty form was the single biggest usability win.',
+          'Starting from real data instead of an empty form shaped every other decision in the app.',
           'Next: test the nudge copy for tone, and design an accessible high-contrast theme.',
         ],
       },
@@ -315,18 +302,17 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
   },
   // Real client work. Structure and decisions are read from the delivered screens.
-  // TODO(verify): confirm the brief, dates and outcomes before publishing.
   {
     slug: 'fitnect',
     title: 'FitNect',
     tagline: 'A fitness marketplace app for finding a personal trainer, booking and paying for sessions, and staying on track.',
     platform: 'Mobile',
     role: 'UI/UX Designer (freelance) — IA, user flows, UI design',
-    timeline: '', // TODO(verify): add dates
+    timeline: 'February 2025 (client project)',
     tools: ['Figma'],
     tags: ['Client Work', 'Marketplace', 'Dark Theme', 'iOS'],
     accent: '#7D51FC',
-    cover: { src: fitnectImg, alt: 'FitNect mobile app screens' },
+    cover: { src: img('fitnect', 'cover', 'webp'), alt: 'FitNect activities, home and service package screens on three phones' },
     sections: [
       {
         id: 'overview',
@@ -345,9 +331,9 @@ export const CASE_STUDIES: CaseStudy[] = [
         title: 'Design goals',
         body: ['A marketplace only works if both sides trust it. I designed around three questions a client asks before paying a stranger to train them.'],
         steps: [
-          { title: 'Can I trust this coach?', detail: 'Ratings, number of purchases, the trainer’s gym, rules and what to bring, before any payment.' },
-          { title: 'Does it fit my life?', detail: 'Service types (online, door-to-door, fixed location) and specialities such as post-injury or post-pregnancy.' },
-          { title: 'Will I keep going?', detail: 'Sessions shown as progress (3/10 done), reminders, and a timeline of what is next.' },
+          { title: 'Can I trust this coach?', detail: 'Ratings, purchases, certificates, reviews, rules and a cancellation policy, all before any payment.' },
+          { title: 'Does it fit my life?', detail: 'Service types (online, door-to-door, fixed location), special needs such as post-injury or post-pregnancy, and the trainer’s schedule.' },
+          { title: 'Will I keep going?', detail: 'Sessions shown as progress (3/10 done), a progress chart, and a timeline of what is next.' },
         ],
       },
       {
@@ -372,10 +358,11 @@ export const CASE_STUDIES: CaseStudy[] = [
         phase: 'design',
         title: 'Key design decisions',
         steps: [
-          { title: 'Price and “Buy now” stay pinned', detail: 'On the service page the price never scrolls away, so reading more never means losing the action.' },
+          { title: 'Price and “Buy now” stay pinned', detail: 'On the package page the price never scrolls away, so reading more never means losing the action.' },
           { title: 'Sessions read as progress', detail: 'Packages show “3/10 completed”, which turns a purchase into a goal and prompts the next booking.' },
           { title: 'One timeline for everything', detail: 'Booked sessions and self-logged workouts share the Activities timeline, so the day reads at a glance.' },
-          { title: 'Guarded destructive actions', detail: 'Deleting an account asks the user to type “Delete”, so it can’t happen by accident.' },
+          { title: 'A profile the trainer can work with', detail: 'Users share goals, activity level, diet, injuries and health conditions, so the first session starts prepared.' },
+          { title: 'The session is the plan', detail: 'Each booked session carries the workout plan and the trainer’s notes, with Reschedule one tap away.' },
         ],
       },
       {
@@ -391,24 +378,32 @@ export const CASE_STUDIES: CaseStudy[] = [
           { name: 'Background', hex: '#1F2022' },
           { name: 'Text', hex: '#FFFFFF' },
         ],
-        fonts: [], // TODO(verify): add the typeface used in the Figma file
-      },
-      {
-        id: 'closeups',
-        kind: 'gallery',
-        layout: 'detail',
-        phase: 'design',
-        title: 'Screens up close',
-        images: [
-          { src: img('fitnect', 'detail', 'jpg'), alt: 'Service detail page for 1-on-1 personal training', caption: 'Service detail — trust signals before the pinned Buy now' },
-          { src: img('fitnect', 'home', 'jpg'), alt: 'Home with upcoming sessions, session progress and progress tiles', caption: 'Home — upcoming sessions and progress' },
-          { src: img('fitnect', 'activities', 'jpg'), alt: 'Activities calendar with a timeline of sessions', caption: 'Activities — sessions and workouts on one timeline' },
-          { src: img('fitnect', 'payments', 'jpg'), alt: 'Payments with saved cards and transaction history', caption: 'Payments — saved cards and history' },
-          { src: img('fitnect', 'help', 'jpg'), alt: 'Help centre with common issues and contact options', caption: 'Help centre — answers before support' },
-        ],
+        fonts: ['PT Sans'],
       },
       {
         id: 'hifi',
+        kind: 'gallery',
+        layout: 'mobile',
+        screenRatio: 402 / 800,
+        phase: 'design',
+        title: 'High-fidelity screens',
+        images: [
+          { src: img('fitnect', 'home'), alt: 'Home with upcoming sessions, trainer sessions and a progress chart', caption: 'Home — upcoming sessions and progress' },
+          { src: img('fitnect', 'service'), alt: '1-on-1 personal training package with rules, service types and reviews', caption: 'Package detail — trust signals before the pinned Buy now' },
+          { src: img('fitnect', 'trainer'), alt: 'Trainer profile with certificates, reviews, packages and schedule', caption: 'Trainer profile — certificates, reviews and schedule' },
+          { src: img('fitnect', 'session'), alt: 'Session detail with workout plan and trainer’s notes', caption: 'Session — workout plan, notes and reschedule' },
+          { src: img('fitnect', 'activities'), alt: 'Activities calendar with a timeline of sessions and workouts', caption: 'Activities — sessions and workouts on one timeline' },
+          { src: img('fitnect', 'home-filter'), alt: 'Date range filter over the home screen', caption: 'Filter — progress by date range' },
+          { src: img('fitnect', 'my-profile'), alt: 'User profile with goals, diet, injuries and health condition', caption: 'My profile — what a trainer needs to know' },
+          { src: img('fitnect', 'profile'), alt: 'Profile tab with settings and support links', caption: 'Profile — settings and support' },
+          { src: img('fitnect', 'payments'), alt: 'Payments with saved cards and transaction history', caption: 'Payments — saved cards and history' },
+          { src: img('fitnect', 'privacy'), alt: 'Privacy and security settings with change password', caption: 'Privacy & security' },
+          { src: img('fitnect', 'help'), alt: 'Help centre with common issues and contact options', caption: 'Help centre — answers before support' },
+          { src: img('fitnect', 'guide'), alt: 'How FitNect works guide in three steps', caption: 'How FitNect works — onboarding guide' },
+        ],
+      },
+      {
+        id: 'all-screens',
         kind: 'gallery',
         layout: 'web',
         phase: 'design',
@@ -420,14 +415,14 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: 'mrtoy',
     title: 'Mr.Toy',
-    tagline: 'A loyalty app proposal for the Mr.Toy toy-store chain: points, rewards, vouchers and a QR code for the counter.',
+    tagline: 'A loyalty app proposal for the Mr.Toy toy-store chain: points, daily rewards, vouchers and a QR code for the counter.',
     platform: 'Mobile',
     role: 'UI/UX Designer — pitch proposal',
-    timeline: '', // TODO(verify): add dates
+    timeline: 'March 2025 (pitch)',
     tools: ['Figma'],
     tags: ['Pitch', 'Loyalty', 'Retail', 'iOS'],
     accent: '#15AED0',
-    cover: { src: mrtoyImg, alt: 'Mr.Toy loyalty app screens' },
+    cover: { src: img('mrtoy', 'cover', 'webp'), alt: 'Mr.Toy rewards, home and voucher screens on three phones' },
     sections: [
       {
         id: 'overview',
@@ -444,8 +439,9 @@ export const CASE_STUDIES: CaseStudy[] = [
         phase: 'define',
         title: 'Design goals',
         steps: [
-          { title: 'Bring families back', detail: 'Points, rewards and seasonal campaigns give a reason for the next visit.' },
-          { title: 'Make the counter fast', detail: 'The points QR is one tap away and fills the screen, so checkout isn’t held up.' },
+          { title: 'Bring families back', detail: 'Points, membership tiers and seasonal campaigns give a reason for the next visit.' },
+          { title: 'A reason to open it every day', detail: 'A daily check-in streak and mini games earn points between store visits.' },
+          { title: 'Make the counter fast', detail: 'The points QR floats above every tab and fills the screen, so checkout isn’t held up.' },
           { title: 'Speak to parents and kids', detail: 'Playful colour and toy photos for kids; clear terms and validity for parents.' },
         ],
       },
@@ -454,8 +450,8 @@ export const CASE_STUDIES: CaseStudy[] = [
         kind: 'text',
         phase: 'define',
         title: 'Information architecture',
-        body: ['Everything a member needs at the counter (points, vouchers, the QR code) is one tap from Home.'],
-        images: [{ src: img('mrtoy', 'sitemap'), alt: 'Mr.Toy sitemap with home sections, vouchers and points QR', caption: 'Sitemap' }],
+        body: ['Five tabs follow the loyalty loop: Home, Rewards, Store locator, Transactions and Account. My Points QR floats above every tab, because the counter is where points are earned.'],
+        images: [{ src: img('mrtoy', 'sitemap'), alt: 'Mr.Toy sitemap with sign-in, five tabs and the floating points QR', caption: 'Sitemap' }],
       },
       {
         id: 'flow',
@@ -471,10 +467,12 @@ export const CASE_STUDIES: CaseStudy[] = [
         phase: 'design',
         title: 'Key design decisions',
         steps: [
+          { title: 'A streak that grows', detail: 'Daily check-in gives +1 a day and +5 on day 7, so the seventh visit is worth coming back for.' },
+          { title: 'Mini games earn points', detail: 'Games on Home turn a quick daily open into points, keeping the brand in front of kids between visits.' },
+          { title: 'Tiers show the next step', detail: 'Account shows the current tier and how far to the next (“RM254 away from Toy Collector”), with its benefits.' },
           { title: 'Rewards are toys, not numbers', detail: 'Each reward shows the toy, its points price and the original price struck through.' },
           { title: 'Terms before commitment', detail: 'Vouchers explain validity, how to redeem and T&C before the Redeem button.' },
           { title: 'Time-limited redemption QR', detail: 'A redeemed voucher becomes a QR valid for 5 minutes, so screenshots can’t be reused.' },
-          { title: 'Room for campaigns', detail: 'A banner carousel on Home lets marketing run seasonal sales like Raya without an app update.' },
         ],
       },
       {
@@ -482,7 +480,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         kind: 'palette',
         phase: 'design',
         title: 'Visual language',
-        body: ['Bright cyan from the Mr.Toy brand anchors the app. A soft cyan-to-pink gradient makes reward and QR screens feel like opening a present, and a strong pink-red is kept for Redeem actions.'],
+        body: ['Bright cyan from the Mr.Toy brand anchors the app. A soft cyan-to-pink gradient makes reward and QR screens feel like opening a present, and a strong pink-red is kept for Redeem actions. Baloo 2’s rounded letters match the playful tone.'],
         colors: [
           { name: 'Mr.Toy Cyan', hex: '#15AED0' },
           { name: 'Sky', hex: '#7ECAD7' },
@@ -490,28 +488,34 @@ export const CASE_STUDIES: CaseStudy[] = [
           { name: 'Redeem', hex: '#E22D5A' },
           { name: 'Card', hex: '#FFFFFF' },
         ],
-        fonts: [], // TODO(verify): add the typeface used in the Figma file
+        fonts: ['Baloo 2'],
       },
       {
         id: 'hifi',
         kind: 'gallery',
-        layout: 'web',
+        layout: 'mobile',
+        screenRatio: 375 / 812,
         phase: 'design',
-        title: 'Screens',
+        title: 'High-fidelity screens',
         images: [
-          { src: mrtoyImg, alt: 'Mr.Toy home, voucher, reward and points screens', caption: 'Home, voucher detail, reward detail and My Points' },
-          { src: img('mrtoy', 'points-qr', 'jpg'), alt: 'My Points screen with a full-screen QR code', caption: 'My Points — a full-screen QR for the cashier' },
+          { src: img('mrtoy', 'home'), alt: 'Home with points summary, campaign banner, rewards and mini games', caption: 'Home — points, campaigns, rewards and mini games' },
+          { src: img('mrtoy', 'rewards'), alt: 'Rewards with a 7-day check-in streak and vouchers', caption: 'Rewards — daily check-in streak and vouchers' },
+          { src: img('mrtoy', 'voucher'), alt: 'Voucher detail with validity, how to redeem and terms', caption: 'Voucher — terms before Redeem' },
+          { src: img('mrtoy', 'points-qr'), alt: 'My Points screen with a full-screen QR code', caption: 'My Points — a full-screen QR for the cashier' },
+          { src: img('mrtoy', 'locator'), alt: 'Store locator map with a store card and check-in button', caption: 'Store locator — hours and check-in' },
+          { src: img('mrtoy', 'account'), alt: 'Account with points, membership tier progress and vouchers', caption: 'Account — tier progress and vouchers' },
+          { src: img('mrtoy', 'membership'), alt: 'Membership tier with Toy Buddy privileges', caption: 'Membership — what each tier unlocks' },
+          { src: img('mrtoy', 'transactions'), alt: 'In-store transactions with points earned', caption: 'Transactions — purchases and points earned' },
+          { src: img('mrtoy', 'login'), alt: 'Sign in with Google, Apple or email', caption: 'Sign in' },
         ],
       },
       {
-        // TODO(verify): this reflection is a draft. Rewrite it in your own words.
-        id: 'reflection',
-        kind: 'text',
-        phase: 'test',
-        title: 'Reflection',
-        body: [
-          'A pitch is judged in minutes. Next time I would lead with a clickable prototype of the counter moment and a short rollout plan, because that is what a retailer has to picture before saying yes.',
-        ],
+        id: 'all-screens',
+        kind: 'gallery',
+        layout: 'web',
+        phase: 'design',
+        title: 'All screens',
+        images: [{ src: mrtoyImg, alt: 'Mr.Toy home, voucher, reward and points screens' }],
       },
     ],
   },

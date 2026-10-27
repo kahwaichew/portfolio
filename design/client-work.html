@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>FitNect & Mr.Toy — IA and flow diagrams</title>
+<title>FitNect & Mr.Toy — covers, IA and flow diagrams</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=PT+Sans:wght@400;700&family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-  /* Diagrams documenting the shipped FitNect and Mr.Toy designs. Structure is read off the final screens. */
+  /* Covers and diagrams for the FitNect and Mr.Toy case studies. Structure is read off the final Figma screens. */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #d9dbe4; font-family: 'Inter', sans-serif; padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
   .artboard { position: relative; overflow: hidden; flex: none; padding: 48px; }
@@ -36,7 +36,15 @@
   .loop { margin-top: 26px; padding: 14px 18px; border-radius: 14px; font-size: 13.5px; line-height: 1.5; display: flex; gap: 12px; align-items: flex-start; }
   .lane { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-top: 30px; }
 
+  /* Covers */
+  .cover { padding: 0; }
+  .chip { padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,.16); font-size: 12px; font-weight: 600; }
+  .phone { position: absolute; width: 320px; border-radius: 40px; overflow: hidden; }
+  .phone img { display: block; width: 100%; }
+
   /* FitNect theme (dark, purple + lime) */
+  .fit, .fit .title, .fit .root, .fit h5 { font-family: 'PT Sans', sans-serif; }
+  .toy, .toy .title, .toy .root, .toy h5 { font-family: 'Baloo 2', sans-serif; }
   .fit { background: #1f2022; color: #e7e7ea; --line: #4a4b52; }
   .fit .sub { color: #a5a6ad; }
   .fit .root { background: #c8f672; color: #1f2022; }
@@ -74,48 +82,67 @@ const sitemap = (root, tabs) => `<div class="tree"><div class="root">${root}</di
   </div></div>`;
 const flow = (steps, color) => `<div class="flow">${steps.map(([t, d], i) => `${i ? arrow(color) : ''}<div class="step"><span class="n">${i + 1}</span><h5>${t}</h5><p>${d}</p></div>`).join('')}</div>`;
 
+// Phone frames take the app's screen ratio, so long scrolling screens show only their top
+const phones = (slug, ratio, list, shadow) => list.map(([n, x, y, r]) => `<div class="phone" style="left:${x}px;top:${y}px;height:${Math.round(320 * ratio)}px;transform:rotate(${r}deg);box-shadow:0 30px 60px ${shadow}"><img src="../public/work/${slug}/${n}.png" alt=""></div>`).join('');
+const coverText = (chips, name, line, color) => `<div style="position:absolute;left:110px;top:240px;width:450px;color:#fff">
+    <div style="display:flex;gap:8px">${chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>
+    <div class="title" style="font-size:118px;font-weight:800;line-height:1;margin-top:16px;color:#fff">${name}</div>
+    <div style="font-size:23px;font-weight:700;margin-top:18px;line-height:1.35;color:${color}">${line}</div>
+  </div>`;
+
 const boards = {
-  'fitnect-ia': [1600, 700, 'fit', () => `<div class="title">FitNect · information architecture</div><div class="sub">Five tabs. Search sits in the middle as the main action, because finding a coach is how every journey starts.</div>
+  'fitnect-cover': [1600, 900, 'fit cover', () => `<div style="position:absolute;inset:0;background:linear-gradient(135deg,#1f2022 0%,#3a2a7a 60%,#7d51fc 100%)"></div>
+    <div style="position:absolute;right:-220px;top:-300px;width:900px;height:900px;border-radius:50%;background:rgba(200,246,114,.08)"></div>
+    ${coverText(['Mobile app', 'Client project'], 'FitNect', 'Find a personal trainer, book and pay for sessions, and stay on track.', '#c8f672')}
+    ${phones('fitnect', 800 / 402, [['activities', 640, 175, -6], ['home', 935, 105, 0], ['service', 1230, 175, 6]], 'rgba(0,0,0,.45)')}`],
+
+  'mrtoy-cover': [1600, 900, 'toy cover', () => `<div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f8fb0 0%,#15aed0 50%,#f08aa3 100%)"></div>
+    <div style="position:absolute;right:-220px;top:-300px;width:900px;height:900px;border-radius:50%;background:rgba(255,255,255,.1)"></div>
+    ${coverText(['Mobile app', 'Pitch proposal'], 'Mr.Toy', 'A loyalty app that gives families a reason to come back to the toy store.', '#fff4f6')}
+    ${phones('mrtoy', 812 / 375, [['rewards', 640, 175, -6], ['home', 935, 105, 0], ['voucher', 1230, 175, 6]], 'rgba(10,60,80,.35)')}`],
+
+  'fitnect-ia': [1600, 760, 'fit', () => `<div class="title">FitNect · information architecture</div><div class="sub">Five tabs. Search sits in the middle as the main action, because finding a coach is how every journey starts.</div>
     ${sitemap('FitNect', [
-      ['Tab 1', 'Home', ['Upcoming sessions', 'My trainer’s sessions (3/10 done)', 'My progress (minutes per programme)', 'Add a progress metric']],
+      ['Tab 1', 'Home', ['Upcoming sessions', 'My trainer’s sessions (3/10 done)', ['Session detail: workout plan, trainer’s notes, reschedule'], 'My progress chart', ['Filter by date range'], 'Add a progress metric']],
       ['Tab 2', 'Activities', ['Week calendar', 'Day timeline of sessions & workouts', ['Add activity'], ['Swipe to delete']]],
-      ['Tab 3 · main action', 'Search', ['Keyword + location search', 'Recent searches', 'Service detail', ['Trainer, reviews, rules, what to bring'], ['Service types (online, door-to-door…)'], ['Buy now → payment']]],
+      ['Tab 3 · main action', 'Search', ['Keyword + location search', 'Service package detail', ['Rules, cancellation policy, what to bring'], ['Service types & session counts'], ['Buy now → payment'], 'Trainer profile', ['Certificates, reviews, packages, schedule']]],
       ['Tab 4', 'Chat', ['Conversations with trainers', 'Online status & last message']],
-      ['Tab 5', 'Profile', ['My profile', 'Payments: cards & history', 'Notifications: reminders, deals', 'Help centre: FAQ, chat, email', 'Security', ['Change password'], ['Delete account (type to confirm)'], 'How FitNect works guide']],
+      ['Tab 5', 'Profile', ['My profile: goals, health, personality', 'Payments: cards & history', 'Notifications', 'Privacy & security', ['Read receipts, hide profile'], ['Change password, delete account'], 'Help centre: FAQ, chat, email', 'How FitNect works guide']],
     ])}`],
 
   'fitnect-flow': [1600, 520, 'fit', () => `<div class="title">FitNect · core flow: from search to first session</div><div class="sub">One flow covers the marketplace’s promise: find a coach, pay safely, and turn up on time.</div>
     ${flow([
       ['Search', 'Keyword and location (e.g. “personal trainer”, Petaling Jaya). Recent searches come back in one tap.'],
-      ['Compare', 'Service detail shows rating, purchases, trainer, rules, what to bring and service types.'],
+      ['Compare', 'Package detail and trainer profile: rating, purchases, certificates, rules, reviews and schedule.'],
       ['Buy', 'Price and “Buy now” stay pinned at the bottom while the user reads.'],
       ['Pay', 'Saved cards and a transaction history for every package bought.'],
-      ['Show up', 'The session lands in Home and the Activities timeline, with a reminder notification.'],
-      ['Track', 'Sessions count down (3/10 done) and progress tiles show minutes trained.'],
+      ['Show up', 'The session lands in Home and the Activities timeline, with the workout plan and trainer’s notes.'],
+      ['Track', 'Sessions count down (3/10 done) and the progress chart shows the trend.'],
     ], '#7d51fc')}
-    <div class="loop"><b style="color:#c8f672;white-space:nowrap">Keeps users coming back →</b><span>Reminders and deals in Notifications, and session counts on Home, lead into booking the next package. Chat and the Help centre handle problems without leaving the app.</span></div>`],
+    <div class="loop"><b style="color:#c8f672;white-space:nowrap">Keeps users coming back →</b><span>Reminders in Notifications, and session counts on Home, lead into booking the next package. Chat and the Help centre handle problems without leaving the app.</span></div>`],
 
-  'mrtoy-ia': [1600, 560, 'toy', () => `<div class="title">Mr.Toy · information architecture</div><div class="sub">Everything a member needs at the counter (points, vouchers, the QR code) is one tap from Home.</div>
+  'mrtoy-ia': [1600, 700, 'toy', () => `<div class="title">Mr.Toy · information architecture</div><div class="sub">Five tabs around one loop: earn points, come back daily, redeem at the counter. My Points QR floats above every tab.</div>
     ${sitemap('Mr.Toy member app', [
-      ['Home', 'Welcome & check-in', ['Greeting with member name', 'Check-in', 'Points balance on the card']],
-      ['Home', 'Promotions', ['Seasonal campaign banner carousel', 'Banner → campaign detail']],
-      ['Home', 'Rewards for you', ['Toy rewards priced in points', 'Reward detail', ['T&C, stores it applies to'], ['Redeem with points']]],
-      ['Tab', 'Vouchers', ['Discount vouchers', 'Voucher detail', ['Validity, how to redeem, T&C'], ['Redeem → QR code (5 min)']]],
-      ['Anywhere', 'My Points QR', ['Show at checkout to collect points']],
-      ['Home', 'Mini games', ['Light games for kids between store visits']],
+      ['Entry', 'Sign in / Sign up', ['Google or Apple', 'Email or phone + password']],
+      ['Tab 1', 'Home', ['Check-in, points & vouchers summary', 'Campaign banners', 'Rewards for you', 'Mini games', ['Play daily to earn points']]],
+      ['Tab 2', 'Rewards', ['Points balance', '7-day daily check-in', ['+1 a day, +5 on day 7'], 'Vouchers / Prizes', ['Voucher detail → Redeem'], ['Redeem QR (5 min)']]],
+      ['Tab 3', 'Store locator', ['Map / List', 'Store card: hours, phone', ['Check in at the store']]],
+      ['Tab 4', 'Transactions', ['In-store purchases', 'Points history']],
+      ['Tab 5', 'Account', ['Points & membership tier', ['Tier benefits'], 'My vouchers', 'FAQ, About, T&C, Contact']],
+      ['Floating', 'My Points QR', ['Show at checkout to collect points']],
     ])}`],
 
-  'mrtoy-flow': [1600, 600, 'toy', () => `<div class="title">Mr.Toy · the earn → redeem loop</div><div class="sub">The proposal designed one loop that brings families back to the store, not a standalone shopping app.</div>
+  'mrtoy-flow': [1600, 640, 'toy', () => `<div class="title">Mr.Toy · the earn → redeem loop</div><div class="sub">The proposal designed one loop that brings families back to the store, not a standalone shopping app.</div>
     <div class="lane">Earn</div>
     ${flow([
       ['Shop in store', 'Parent pays at any Mr.Toy counter.'],
       ['Show My Points QR', 'One full-screen QR, readable by the cashier’s scanner.'],
-      ['Points added', 'Balance updates on the Home card.'],
-      ['Check in & play', 'Check-in and mini games give families a reason to open the app between visits.'],
+      ['Points added', 'Balance updates on Home; higher tiers earn more (1.5× for Toy Buddy).'],
+      ['Come back every day', 'Daily check-in streak and mini games earn points between store visits.'],
     ], '#15aed0')}
     <div class="lane">Redeem</div>
     ${flow([
-      ['Browse rewards', 'Toys and vouchers priced in points on Home.'],
+      ['Browse rewards', 'Toys, vouchers and prizes priced in points.'],
       ['Read the details', 'Validity, how to redeem and T&C before committing.'],
       ['Redeem', 'Generates a one-time QR, valid for 5 minutes, to prevent misuse.'],
       ['Scan at counter', 'Staff scan it; the reward is marked used.'],

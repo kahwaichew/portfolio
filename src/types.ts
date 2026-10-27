@@ -56,7 +56,12 @@ export type CaseSection =
   | (BaseSection & { kind: 'personas'; personas: Persona[] })
   | (BaseSection & { kind: 'steps'; steps: { title: string; detail: string }[] })
   | (BaseSection & { kind: 'palette'; colors: { name: string; hex: string }[]; fonts: string[] })
-  | (BaseSection & { kind: 'gallery'; layout: 'mobile' | 'web' | 'detail' });
+  | (BaseSection & {
+      kind: 'gallery';
+      layout: 'mobile' | 'web';
+      /** Width / height of the phone screens in a mobile gallery. Defaults to 390 / 844. */
+      screenRatio?: number;
+    });
 
 export interface CaseStudy {
   slug: string;
