@@ -11,4 +11,8 @@ describe('case study images', () => {
   it.each(publicImages)('%s exists in public/', (src) => {
     expect(existsSync(join('public', src))).toBe(true);
   });
+
+  it('ships the resume PDF the hero button downloads', () => {
+    expect(existsSync(join('public', 'Chew_Kah_Wai_Resume.pdf'))).toBe(true);
+  });
 });

@@ -2,7 +2,7 @@
 
 Personal portfolio of a software engineer and UI/UX designer. It has UI/UX case studies covering the full design process (research → personas → flows → wireframes → design system → hi-fi → testing), plus the mobile and full-stack products I've shipped.
 
-**Live:** _add Azure Static Web Apps URL_
+**Live:** https://salmon-pond-04487fd00.2.azurestaticapps.net
 
 ## Stack
 
@@ -27,7 +27,7 @@ src/
   data/         Typed content: caseStudies, projects, skills, research
   hooks/        useDocumentTitle, useScrollToHash
   test/         Data-integrity and routing tests
-public/work/    Exported Figma frames, one folder per case study
+public/work/    Case-study images (Figma exports and renders of design/), one folder per case study
 ```
 
 Case studies are data-driven. Each one is a `CaseStudy` object in `src/data/caseStudies.ts` made of typed sections (`text`, `insights`, `personas`, `steps`, `palette`, `gallery`). `pages/CaseStudy.tsx` renders each section by its `kind`. Adding a case study takes no new UI code.

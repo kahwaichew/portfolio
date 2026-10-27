@@ -12,7 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "format": "prettier --write .",
-    "design:render": "node design/render.mjs design/shelfwise.html public/work/shelfwise"
+    "design:render": "node design/render.mjs design/jalan.html public/work/jalan && node design/render.mjs design/client-work.html public/work fitnect-ia=fitnect/sitemap fitnect-flow=fitnect/flow mrtoy-ia=mrtoy/sitemap mrtoy-flow=mrtoy/flow"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

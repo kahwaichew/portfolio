@@ -47,16 +47,9 @@ function CaseStudyView({ study }: { study: CaseStudy }) {
           >
             <ArrowLeft className="w-4 h-4" /> All work
           </Link>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-bold tracking-widest text-indigo-600 uppercase">
-              {study.platform} case study
-            </span>
-            {study.isConcept && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white text-slate-500 border border-slate-200">
-                Self-initiated concept
-              </span>
-            )}
-          </div>
+          <span className="block mb-3 text-xs font-bold tracking-widest text-indigo-600 uppercase">
+            {study.platform} case study
+          </span>
           <h1 className="text-4xl sm:text-6xl font-display font-extrabold tracking-tight text-slate-900">
             {study.title}
           </h1>
@@ -284,13 +277,15 @@ function SectionContent({ section }: { section: CaseSection }) {
               </li>
             ))}
           </ul>
-          <ul className="flex flex-wrap gap-2">
-            {section.fonts.map((f) => (
-              <li key={f} className="px-4 py-2 rounded-full bg-slate-50 border border-slate-100 text-sm text-slate-600">
-                {f}
-              </li>
-            ))}
-          </ul>
+          {section.fonts.length > 0 && (
+            <ul className="flex flex-wrap gap-2">
+              {section.fonts.map((f) => (
+                <li key={f} className="px-4 py-2 rounded-full bg-slate-50 border border-slate-100 text-sm text-slate-600">
+                  {f}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       );
     default:
@@ -313,8 +308,10 @@ function PersonaList({ title, items, tone }: { title: string; items: string[]; t
 
 function SectionImages({ section, onOpen }: { section: CaseSection; onOpen: (image: CaseImage) => void }) {
   if (!section.images?.length) return null;
-  const mobile = section.kind === 'gallery' && section.layout === 'mobile';
-  const gridClass = mobile
+  const layout = section.kind === 'gallery' ? section.layout : undefined;
+  const mobile = layout === 'mobile';
+  // 'detail' images are close-up crops with their own aspect ratio, so they keep it
+  const gridClass = mobile || layout === 'detail'
     ? 'grid-cols-2 sm:grid-cols-3'
     : section.images.length > 1
       ? 'grid-cols-1 md:grid-cols-2'

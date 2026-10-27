@@ -1,5 +1,5 @@
 // Exports each .artboard in a mockup page to a PNG with a headless browser.
-// Usage: node design/render.mjs design/shelfwise.html public/work/shelfwise [artboardId=fileName ...]
+// Usage: node design/render.mjs design/jalan.html public/work/jalan [artboardId=fileName ...]
 // With no ids, every artboard is exported under its own id.
 import { chromium } from 'playwright-core';
 import path from 'node:path';

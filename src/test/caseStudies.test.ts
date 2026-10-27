@@ -15,8 +15,4 @@ describe('case study data', () => {
     for (const image of images) expect(image.alt.trim()).not.toBe('');
   });
 
-  it('labels the self-initiated projects as concepts', () => {
-    const concepts = CASE_STUDIES.filter((c) => c.isConcept).map((c) => c.slug);
-    expect(concepts).toEqual(['duit', 'shelfwise']);
-  });
 });

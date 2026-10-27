@@ -9,7 +9,7 @@ export const PROJECTS: Project[] = [
     users: 'Merchandisers & Promoters in retail',
     tech: ['Flutter', '.NET', 'REST API', 'Figma'],
     role: 'Designed & implemented proof of delivery system, order picking system, leave module, testing, App Store deployment',
-    highlight: 'Successfully migrated ALL features from legacy ionic app to Flutter — zero feature loss',
+    highlight: 'Launched in July 2025 — used by 1000+ promoters and merchandisers',
     bannerColor: 'bg-[#e5ecfb]'
   },
   {
@@ -20,7 +20,7 @@ export const PROJECTS: Project[] = [
     users: 'Promoters (RetailAIM+) & Customers (R2Home app)',
     tech: ['Flutter', '.NET', 'REST API', 'App Store'],
     role: 'Designed the full R2Home module in RetailAIM+, implemented promoter-side testing, training & deployment',
-    highlight: 'Launched in April — already live and adopted by multiple retailers',
+    highlight: 'Launched in April 2026 — already live and adopted by multiple retailers',
     bannerColor: 'bg-[#fbe8e9]'
   },
   {

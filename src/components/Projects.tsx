@@ -9,10 +9,10 @@ export default function Projects() {
         {/* Section Header */}
         <div className="text-left mb-14 flex flex-col items-start" id="projects-header">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-[#fee2e2] text-rose-700 mb-3 border border-rose-100">
-            Work
+            Web & Mobile Projects
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight" id="projects-title">
-            Projects I've shipped
+            Software I've shipped
           </h2>
           <p className="text-slate-500 font-medium text-sm mt-2 tracking-wide" id="projects-subtitle">
             Real products • Real users • Real impact

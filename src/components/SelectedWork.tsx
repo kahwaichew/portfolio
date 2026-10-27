@@ -11,10 +11,10 @@ export default function SelectedWork() {
         {/* Section Header */}
         <div className="text-left mb-14 flex flex-col items-start">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-[#fef3c7] text-amber-700 mb-3 border border-amber-100">
-            UI/UX Case Studies
+            UI/UX Projects
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
-            Selected Work
+            UI/UX I've shipped
           </h2>
           <p className="text-slate-500 font-medium text-sm mt-2 tracking-wide">
             From research and wireframes to design systems and tested prototypes
@@ -46,16 +46,9 @@ export default function SelectedWork() {
                 </div>
                 <div className="p-6 sm:p-8 flex items-start justify-between gap-4">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-bold tracking-widest text-indigo-600 uppercase">
-                        {study.platform}
-                      </span>
-                      {study.isConcept && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500">
-                          Concept
-                        </span>
-                      )}
-                    </div>
+                    <span className="block mb-2 text-xs font-bold tracking-widest text-indigo-600 uppercase">
+                      {study.platform}
+                    </span>
                     <h3 className="text-2xl font-display font-extrabold text-slate-900 tracking-tight group-hover:text-brand transition-colors">
                       {study.title}
                     </h3>

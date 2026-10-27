@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FitNect & Mr.Toy — IA and flow diagrams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  /* Diagrams documenting the shipped FitNect and Mr.Toy designs. Structure is read off the final screens. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #d9dbe4; font-family: 'Inter', sans-serif; padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
+  .artboard { position: relative; overflow: hidden; flex: none; padding: 48px; }
+  .title { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -.01em; }
+  .sub { font-size: 14px; margin-top: 4px; }
+
+  /* Sitemap */
+  .tree { display: flex; flex-direction: column; align-items: center; margin-top: 36px; }
+  .root { padding: 14px 26px; border-radius: 14px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px; }
+  .stem { width: 2px; height: 26px; }
+  .branches { display: grid; gap: 18px; position: relative; padding-top: 26px; width: 100%; }
+  .branches::before { content: ''; position: absolute; top: 0; height: 2px; background: var(--line); left: var(--inset); right: var(--inset); }
+  .branch { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .branch::before { content: ''; position: absolute; top: -26px; width: 2px; height: 26px; background: var(--line); }
+  .tab { width: 100%; padding: 12px 14px; border-radius: 12px; font-weight: 700; font-size: 15px; text-align: center; }
+  .tab small { display: block; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; opacity: .7; margin-bottom: 2px; }
+  .leaf { width: 100%; margin-top: 8px; padding: 9px 12px; border-radius: 10px; font-size: 13px; line-height: 1.35; }
+  .leaf.child { margin-left: 22px; width: calc(100% - 22px); }
+
+  /* Flow */
+  .flow { display: flex; align-items: stretch; gap: 0; margin-top: 40px; }
+  .step { width: 210px; padding: 16px; border-radius: 16px; flex: none; }
+  .step .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+  .step h5 { font-family: 'Outfit', sans-serif; font-size: 17px; margin-top: 8px; }
+  .step p { font-size: 12.5px; line-height: 1.45; margin-top: 4px; }
+  .arrow { width: 44px; flex: none; display: grid; place-items: center; }
+  .loop { margin-top: 26px; padding: 14px 18px; border-radius: 14px; font-size: 13.5px; line-height: 1.5; display: flex; gap: 12px; align-items: flex-start; }
+  .lane { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-top: 30px; }
+
+  /* FitNect theme (dark, purple + lime) */
+  .fit { background: #1f2022; color: #e7e7ea; --line: #4a4b52; }
+  .fit .sub { color: #a5a6ad; }
+  .fit .root { background: #c8f672; color: #1f2022; }
+  .fit .stem { background: #4a4b52; }
+  .fit .tab { background: #7d51fc; color: #fff; }
+  .fit .leaf { background: #2e2f31; color: #d6d6dc; border: 1px solid #3c3d42; }
+  .fit .step { background: #2e2f31; border: 1px solid #3c3d42; }
+  .fit .step .n { background: #c8f672; color: #1f2022; }
+  .fit .step p { color: #a5a6ad; }
+  .fit .loop { background: #2a2540; color: #d9d0ff; border: 1px solid #4b3d8a; }
+  .fit .lane { color: #a5a6ad; }
+
+  /* Mr.Toy theme (light, cyan + pink) */
+  .toy { background: linear-gradient(180deg, #eef8fb, #fbf1f2); color: #1d2a33; --line: #b9dbe4; }
+  .toy .sub { color: #5c6b75; }
+  .toy .root { background: #15aed0; color: #fff; }
+  .toy .stem { background: #b9dbe4; }
+  .toy .tab { background: #fff; color: #0f7f99; border: 2px solid #15aed0; }
+  .toy .leaf { background: #fff; color: #3d4a53; border: 1px solid #dfe9ee; }
+  .toy .step { width: 340px; background: #fff; border: 1px solid #dfe9ee; box-shadow: 0 6px 18px rgba(21,174,208,.08); }
+  .toy .step .n { background: #e22d5a; color: #fff; }
+  .toy .step p { color: #5c6b75; }
+  .toy .loop { background: #fff; color: #3d4a53; border: 1.5px dashed #e8a3b4; }
+  .toy .lane { color: #5c6b75; }
+</style>
+</head>
+<body>
+<div id="boards" style="display:contents"></div>
+<script>
+const arrow = (color) => `<div class="arrow"><svg width="30" height="14" viewBox="0 0 30 14"><path d="M0 7h26M20 1l7 6-7 6" stroke="${color}" stroke-width="2" fill="none"/></svg></div>`;
+const sitemap = (root, tabs) => `<div class="tree"><div class="root">${root}</div><div class="stem"></div>
+  <div class="branches" style="grid-template-columns:repeat(${tabs.length},1fr);--inset:calc(100% / ${tabs.length * 2})">
+  ${tabs.map(([kicker, name, leaves]) => `<div class="branch"><div class="tab"><small>${kicker}</small>${name}</div>
+    ${leaves.map(l => Array.isArray(l) ? `<div class="leaf child">↳ ${l[0]}</div>` : `<div class="leaf">${l}</div>`).join('')}</div>`).join('')}
+  </div></div>`;
+const flow = (steps, color) => `<div class="flow">${steps.map(([t, d], i) => `${i ? arrow(color) : ''}<div class="step"><span class="n">${i + 1}</span><h5>${t}</h5><p>${d}</p></div>`).join('')}</div>`;
+
+const boards = {
+  'fitnect-ia': [1600, 700, 'fit', () => `<div class="title">FitNect · information architecture</div><div class="sub">Five tabs. Search sits in the middle as the main action, because finding a coach is how every journey starts.</div>
+    ${sitemap('FitNect', [
+      ['Tab 1', 'Home', ['Upcoming sessions', 'My trainer’s sessions (3/10 done)', 'My progress (minutes per programme)', 'Add a progress metric']],
+      ['Tab 2', 'Activities', ['Week calendar', 'Day timeline of sessions & workouts', ['Add activity'], ['Swipe to delete']]],
+      ['Tab 3 · main action', 'Search', ['Keyword + location search', 'Recent searches', 'Service detail', ['Trainer, reviews, rules, what to bring'], ['Service types (online, door-to-door…)'], ['Buy now → payment']]],
+      ['Tab 4', 'Chat', ['Conversations with trainers', 'Online status & last message']],
+      ['Tab 5', 'Profile', ['My profile', 'Payments: cards & history', 'Notifications: reminders, deals', 'Help centre: FAQ, chat, email', 'Security', ['Change password'], ['Delete account (type to confirm)'], 'How FitNect works guide']],
+    ])}`],
+
+  'fitnect-flow': [1600, 520, 'fit', () => `<div class="title">FitNect · core flow: from search to first session</div><div class="sub">One flow covers the marketplace’s promise: find a coach, pay safely, and turn up on time.</div>
+    ${flow([
+      ['Search', 'Keyword and location (e.g. “personal trainer”, Petaling Jaya). Recent searches come back in one tap.'],
+      ['Compare', 'Service detail shows rating, purchases, trainer, rules, what to bring and service types.'],
+      ['Buy', 'Price and “Buy now” stay pinned at the bottom while the user reads.'],
+      ['Pay', 'Saved cards and a transaction history for every package bought.'],
+      ['Show up', 'The session lands in Home and the Activities timeline, with a reminder notification.'],
+      ['Track', 'Sessions count down (3/10 done) and progress tiles show minutes trained.'],
+    ], '#7d51fc')}
+    <div class="loop"><b style="color:#c8f672;white-space:nowrap">Keeps users coming back →</b><span>Reminders and deals in Notifications, and session counts on Home, lead into booking the next package. Chat and the Help centre handle problems without leaving the app.</span></div>`],
+
+  'mrtoy-ia': [1600, 560, 'toy', () => `<div class="title">Mr.Toy · information architecture</div><div class="sub">Everything a member needs at the counter (points, vouchers, the QR code) is one tap from Home.</div>
+    ${sitemap('Mr.Toy member app', [
+      ['Home', 'Welcome & check-in', ['Greeting with member name', 'Check-in', 'Points balance on the card']],
+      ['Home', 'Promotions', ['Seasonal campaign banner carousel', 'Banner → campaign detail']],
+      ['Home', 'Rewards for you', ['Toy rewards priced in points', 'Reward detail', ['T&C, stores it applies to'], ['Redeem with points']]],
+      ['Tab', 'Vouchers', ['Discount vouchers', 'Voucher detail', ['Validity, how to redeem, T&C'], ['Redeem → QR code (5 min)']]],
+      ['Anywhere', 'My Points QR', ['Show at checkout to collect points']],
+      ['Home', 'Mini games', ['Light games for kids between store visits']],
+    ])}`],
+
+  'mrtoy-flow': [1600, 600, 'toy', () => `<div class="title">Mr.Toy · the earn → redeem loop</div><div class="sub">The proposal designed one loop that brings families back to the store, not a standalone shopping app.</div>
+    <div class="lane">Earn</div>
+    ${flow([
+      ['Shop in store', 'Parent pays at any Mr.Toy counter.'],
+      ['Show My Points QR', 'One full-screen QR, readable by the cashier’s scanner.'],
+      ['Points added', 'Balance updates on the Home card.'],
+      ['Check in & play', 'Check-in and mini games give families a reason to open the app between visits.'],
+    ], '#15aed0')}
+    <div class="lane">Redeem</div>
+    ${flow([
+      ['Browse rewards', 'Toys and vouchers priced in points on Home.'],
+      ['Read the details', 'Validity, how to redeem and T&C before committing.'],
+      ['Redeem', 'Generates a one-time QR, valid for 5 minutes, to prevent misuse.'],
+      ['Scan at counter', 'Staff scan it; the reward is marked used.'],
+    ], '#e22d5a')}`],
+};
+const host = document.getElementById('boards');
+for (const [id, [w, h, theme, render]] of Object.entries(boards)) {
+  const el = document.createElement('section');
+  el.className = `artboard ${theme}`; el.id = id; el.style.width = `${w}px`; el.style.height = `${h}px`;
+  el.innerHTML = render();
+  host.appendChild(el);
+}
+</script>
+</body>
+</html>

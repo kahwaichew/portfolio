@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { ArrowRight, Download, Laptop } from 'lucide-react';
-import ResumeModal from './ResumeModal';
 import avatarImg from '../assets/images/avatar.jpg';
 
 export default function Hero() {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const avatarPath = avatarImg;
 
   // Animation variants
@@ -100,13 +97,14 @@ export default function Hero() {
               View My Work
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </a>
-            <button
-              onClick={() => setIsResumeOpen(true)}
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold text-sm bg-white border border-slate-200 text-slate-750 shadow-sm hover:border-brand hover:text-brand hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 cursor-pointer"
+            <a
+              href="/Chew_Kah_Wai_Resume.pdf"
+              download
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold text-sm bg-white border border-slate-200 text-slate-750 shadow-sm hover:border-brand hover:text-brand hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150"
             >
               <Download className="w-4 h-4 mr-2 text-slate-500" />
               Download Resume
-            </button>
+            </a>
           </motion.div>
 
           {/* Simple Metrics */}
@@ -170,7 +168,6 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
-      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </section>
   );
 }

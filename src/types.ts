@@ -56,15 +56,13 @@ export type CaseSection =
   | (BaseSection & { kind: 'personas'; personas: Persona[] })
   | (BaseSection & { kind: 'steps'; steps: { title: string; detail: string }[] })
   | (BaseSection & { kind: 'palette'; colors: { name: string; hex: string }[]; fonts: string[] })
-  | (BaseSection & { kind: 'gallery'; layout: 'mobile' | 'web' });
+  | (BaseSection & { kind: 'gallery'; layout: 'mobile' | 'web' | 'detail' });
 
 export interface CaseStudy {
   slug: string;
   title: string;
   tagline: string;
   platform: 'Mobile' | 'Web' | 'Web & Mobile';
-  /** Self-initiated concept work, labelled as such so it is never mistaken for client work. */
-  isConcept: boolean;
   role: string;
   timeline: string;
   tools: string[];
