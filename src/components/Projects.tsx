@@ -40,13 +40,25 @@ export default function Projects() {
 
               {/* Card Body - Flex Grow to distribute spacer */}
               <div className="p-8 flex flex-col flex-grow">
-                {/* Title and Tag */}
-                <h3 className="text-2xl font-display font-extrabold text-slate-900 tracking-tight transition-colors duration-150 hover:text-brand">
-                  {project.title}
-                </h3>
-                <h4 className="text-[10px] font-bold tracking-wider text-slate-400 uppercase mt-1 mb-5">
-                  {project.tag}
-                </h4>
+                {/* Icon, title and tag */}
+                <div className="flex items-center gap-3 mb-5">
+                  <img
+                    src={project.icon}
+                    alt=""
+                    width={44}
+                    height={44}
+                    loading="lazy"
+                    className="w-11 h-11 rounded-[10px] border border-slate-100 shadow-2xs flex-shrink-0"
+                  />
+                  <div>
+                    <h3 className="text-2xl font-display font-extrabold text-slate-900 tracking-tight transition-colors duration-150 hover:text-brand">
+                      {project.title}
+                    </h3>
+                    <h4 className="text-[10px] font-bold tracking-wider text-slate-400 uppercase mt-1">
+                      {project.tag}
+                    </h4>
+                  </div>
+                </div>
 
                 {/* Description */}
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">

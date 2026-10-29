@@ -14,6 +14,7 @@ export interface Project {
   role: string;
   highlight: string;
   bannerColor: string; // Tailwind background class, e.g. 'bg-[#e5ecfb]'
+  icon: string; // App icon, a 256px rounded square
 }
 
 export interface ResearchItem {

@@ -29,14 +29,14 @@ export default function SelectedWork() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: (index % 2) * 0.1 }}
-              className={index === 0 ? 'md:col-span-2' : ''}
+              className="h-full"
             >
               <Link
                 to={`/work/${study.slug}`}
-                className="group block rounded-3xl overflow-hidden border border-slate-100 bg-white shadow-xs hover:shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-brand"
+                className="group block h-full rounded-3xl overflow-hidden border border-slate-100 bg-white shadow-xs hover:shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-brand"
               >
                 <div
-                  className={`overflow-hidden ${index === 0 ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[16/9]'}`}
+                  className="overflow-hidden aspect-[16/9]"
                   style={{ backgroundColor: `${study.accent}14` }}
                 >
                   <CaseImageView

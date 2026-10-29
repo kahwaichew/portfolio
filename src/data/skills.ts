@@ -4,21 +4,21 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: 'mobile',
     title: 'Mobile',
-    tags: ['Flutter', 'Dart', 'Android', 'iOS', 'App Store Deploy']
+    tags: ['Flutter', 'Dart', 'Offline', 'Notification', 'Deployment']
   },
   {
     id: 'web-backend',
     title: 'Web & Backend',
-    tags: ['Django', 'Python', 'React', 'JavaScript', 'REST API']
+    tags: ['Django', 'ReactJS', '.NET Web API', 'RESTful API']
   },
   {
     id: 'data-infra',
     title: 'Data & Infra',
-    tags: ['MySQL', 'Firebase', 'Git', '.NET', 'Offline Sync']
+    tags: ['MS SQL', 'MySQL', 'Git', 'Firebase', 'Azure']
   },
   {
     id: 'design-tools',
     title: 'Design & Tools',
-    tags: ['Figma', 'UI/UX Design', 'Prototyping', 'Adobe Illustrator']
+    tags: ['Figma', 'Claude Code', 'Jira', 'Trello', 'Adobe XD']
   }
 ];

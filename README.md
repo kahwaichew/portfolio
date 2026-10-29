@@ -2,7 +2,7 @@
 
 Personal portfolio of a software engineer and UI/UX designer. It has UI/UX case studies covering the full design process (research → personas → flows → wireframes → design system → hi-fi → testing), plus the mobile and full-stack products I've shipped.
 
-**Live:** https://salmon-pond-04487fd00.2.azurestaticapps.net
+**Live:** https://kahwaichew.is-a.dev
 
 ## Stack
 
