@@ -15,6 +15,24 @@ export interface Project {
   highlight: string;
   bannerColor: string; // Tailwind background class, e.g. 'bg-[#e5ecfb]'
   icon: string; // App icon, a 256px rounded square
+  accent: string; // hex used for highlights on the detail page
+  detail: ProjectDetail;
+}
+
+/** The engineering write-up shown on /apps/:id. */
+export interface ProjectDetail {
+  overview: string[];
+  appStoreUrl?: string;
+  playStoreUrl?: string;
+  responsibilities: string[];
+  flowTitle: string;
+  flow: { title: string; detail?: string }[];
+  features: { title: string; detail: string }[];
+  challenges: { title: string; problem: string; solution: string }[];
+  /** Architecture layers, top (client) to bottom (data). `mine` marks the parts I was involved in. */
+  stack: { layer: string; parts: { name: string; note?: string; mine?: boolean }[] }[];
+  /** Optional code-drawn illustration shown in the challenges section. */
+  illustration?: 'dual-screen';
 }
 
 export interface ResearchItem {

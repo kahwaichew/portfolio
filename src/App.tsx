@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ContactFooter from './components/ContactFooter';
 import Home from './pages/Home';
 import CaseStudyPage from './pages/CaseStudy';
+import ProjectDetailPage from './pages/ProjectDetail';
 import NotFound from './pages/NotFound';
 import { useScrollToHash } from './hooks/useScrollToHash';
 
@@ -22,6 +23,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work/:slug" element={<CaseStudyPage />} />
+          <Route path="/apps/:id" element={<ProjectDetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

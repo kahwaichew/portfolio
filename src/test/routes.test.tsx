@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import App from '../App';
 import { CASE_STUDIES } from '../data/caseStudies';
+import { PROJECTS } from '../data/projects';
 
 const renderAt = (path: string) =>
   render(
@@ -29,6 +30,30 @@ describe('routing', () => {
     for (const section of study.sections) {
       expect(screen.getByRole('heading', { level: 2, name: section.title })).toBeInTheDocument();
     }
+  });
+
+  it('links every shipped app to its detail page', () => {
+    renderAt('/');
+    for (const project of PROJECTS) {
+      expect(screen.getByRole('link', { name: `View ${project.title} details` })).toHaveAttribute(
+        'href',
+        `/apps/${project.id}`,
+      );
+    }
+  });
+
+  it.each(PROJECTS)('renders the $id app page with its store links', (project) => {
+    renderAt(`/apps/${project.id}`);
+    expect(screen.getByRole('heading', { level: 1, name: project.title })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Architecture' })).toBeInTheDocument();
+    const { appStoreUrl, playStoreUrl } = project.detail;
+    if (appStoreUrl) expect(screen.getByRole('link', { name: /App Store/ })).toHaveAttribute('href', appStoreUrl);
+    if (playStoreUrl) expect(screen.getByRole('link', { name: /Google Play/ })).toHaveAttribute('href', playStoreUrl);
+  });
+
+  it('shows a 404 for an unknown app', () => {
+    renderAt('/apps/does-not-exist');
+    expect(screen.getByRole('heading', { name: 'Page not found' })).toBeInTheDocument();
   });
 
   it('shows a 404 for an unknown case study', () => {

@@ -312,6 +312,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: 'Solo UI/UX Designer — IA, user flows, UI design',
     timeline: '2 weeks',
     tools: ['Figma'],
+    figmaUrl: 'https://www.figma.com/design/ehVo5cKIEKqYEutyvOyn2x/FitNect',
     tags: ['Client Work', 'Marketplace', 'Dark Theme', 'iOS'],
     accent: '#7D51FC',
     cover: { src: img('fitnect', 'cover', 'webp'), alt: 'FitNect activities, home and service package screens on three phones' },

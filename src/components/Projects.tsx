@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router';
 import { PROJECTS } from '../data/projects';
-import { Users, Cpu, Award, Zap } from 'lucide-react';
+import { Users, Cpu, Award, Zap, ArrowRight } from 'lucide-react';
 
 export default function Projects() {
   return (
@@ -52,7 +53,7 @@ export default function Projects() {
                   />
                   <div>
                     <h3 className="text-2xl font-display font-extrabold text-slate-900 tracking-tight transition-colors duration-150 hover:text-brand">
-                      {project.title}
+                      <Link to={`/apps/${project.id}`}>{project.title}</Link>
                     </h3>
                     <h4 className="text-[10px] font-bold tracking-wider text-slate-400 uppercase mt-1">
                       {project.tag}
@@ -116,6 +117,14 @@ export default function Projects() {
                       {project.highlight}
                     </span>
                   </div>
+                  <Link
+                    to={`/apps/${project.id}`}
+                    className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:text-brand-dark"
+                    aria-label={`View ${project.title} details`}
+                  >
+                    View details
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
                 </div>
               </div>
             </motion.div>
